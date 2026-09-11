@@ -32,10 +32,6 @@ const ok=(name,pass)=>{ console.log(`  ${pass?'PASS':'FAIL'}  ${name}`); if(!pas
   ok('map draws the site boundary', await p.evaluate(()=>document.body.innerText.includes('Site boundary')));
   await p.keyboard.press('Escape'); await sleep(500);
 
-  await p.evaluate(()=>{const x=[...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='Raise request'); x&&x.click();});
-  await sleep(800);
-  ok('raise request opens', await p.evaluate(()=>document.body.innerText.includes('Raise Attendance Request')));
-  await p.keyboard.press('Escape'); await sleep(400);
 
   await p.goto(B+'/work-locations/add',{waitUntil:'networkidle2'}); await sleep(2200);
   await p.click('input[placeholder="Bopal Site — Phase 2"]');

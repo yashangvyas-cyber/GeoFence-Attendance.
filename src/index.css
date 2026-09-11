@@ -2,6 +2,13 @@
 
 /* CollabCRM uses a bracketed breakpoint between xl and 2xl. Every utility in the app
    is written as the responsive triple `2xl:<a> 2xl-to-xl:<b> <base>` - all three, always. */
+/* CollabCRM is on Tailwind v3, where a bare `border` defaults to gray-200.
+   Tailwind v4 changed that default to currentColor, so every class string copied
+   verbatim from the crawled DOM rendered a dark border. Restore the v3 behaviour. */
+@layer base {
+  *, ::before, ::after, ::backdrop { border-color: var(--color-gray-200); }
+}
+
 @custom-variant 2xl-to-xl (@media (min-width: 1280px) and (max-width: 1535px));
 @custom-variant 3xl (@media (min-width: 1800px));
 

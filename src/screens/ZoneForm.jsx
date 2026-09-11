@@ -234,13 +234,6 @@ export default function ZoneForm() {
               </div>
             </div>
 
-            <div className="2xl:mt-4 mt-3 sm:w-2/3">
-              <label className={FIELD_LABEL}>Business unit <span className="text-error-500">*</span></label>
-              <div className="mt-1.5">
-                <Select value={z.business_unit_id} onChange={v => set('business_unit_id', v)}
-                        options={BUSINESS_UNITS.map(b => ({ value: b.id, label: b.name }))} />
-              </div>
-            </div>
           </Card>
 
 
@@ -250,13 +243,14 @@ export default function ZoneForm() {
               <Toggle id="auto_clock_in_out" checked={z.auto_clock_in_out}
                 onChange={v => set('auto_clock_in_out', v)}
                 label="Mark attendance automatically when someone arrives and leaves"
-                hint="Needs the mobile app, with location left on in the background. It uses extra battery, and it will occasionally miss an arrival or a departure — anything missed is sent for review rather than guessed at." />
+                hint="Employees will need the CollabCRM mobile app with location enabled and running in the background. This may use additional battery, and location-based attendance may not always be accurate." />
             </div>
           </Card>
 
           <Card title="Who works here?"
                 sub="Only these people are checked against this location. Everyone else is unaffected.">
-            <AssignPeople value={z.assignment} onChange={v => set('assignment', v)} />
+            <AssignPeople value={z.assignment} onChange={v => set('assignment', v)}
+              businessUnitId={z.business_unit_id} onBusinessUnit={v => set('business_unit_id', v)} />
           </Card>
 
           <div className="h-6" />

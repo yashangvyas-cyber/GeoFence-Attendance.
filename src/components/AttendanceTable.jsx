@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react'
 import LocationsModal from './LocationsModal'
-import RaiseRequestModal from './RaiseRequestModal'
 import AttendanceCard from './AttendanceCard'
-import { CX, Pill } from './ui'
+import { CX } from './ui'
 import { VERDICT, useZones } from '../data/seed'
 
 /* The attendance table. ONE component, used by Self, Team and Organization —
@@ -25,8 +24,6 @@ export default function AttendanceTable({ days, readOnly = false }) {
   const openCard = d => { clearTimeout(closeTimer.current); setHover(d) }
   const closeCard = () => { closeTimer.current = setTimeout(() => setHover(null), 220) }
   const [modal, setModal] = useState(null)
-  const [raise, setRaise] = useState(null)
-  const [raised, setRaised] = useState([])
 
   return (
     <>
@@ -83,15 +80,7 @@ export default function AttendanceTable({ days, readOnly = false }) {
                     <td className={CX.td}>{d.effective || '—'}</td>
                     <td className={CX.td}>{d.break || '—'}</td>
                     <td className={CX.td}>{d.gross || '—'}</td>
-                    <td className={CX.td}>
-                      {raised.includes(d.date)
-                        ? <Pill tone="warning">Awaiting approval</Pill>
-                        : (inEv?.verification === 'unverified' || (ev.length % 2 === 1 && ev.length > 0))
-                            && inEv?.verification !== 'not_applicable' && !d.wfh && !d.open
-                          ? <button onClick={() => setRaise(d)}
-                              className="text-indigo-600 hover:text-indigo-800 font-medium">Raise request</button>
-                          : <span className="text-gray-400">—</span>}
-                    </td>
+                    <td className={CX.td}><span className="text-gray-400">—</span></td>
                   </tr>
                 )
               })}
@@ -100,8 +89,6 @@ export default function AttendanceTable({ days, readOnly = false }) {
         </div>
 
       {modal && <LocationsModal day={modal} zones={zones} onClose={() => setModal(null)} />}
-      {raise && <RaiseRequestModal day={raise} onClose={() => setRaise(null)}
-        onSubmit={() => { setRaised(r => [...r, raise.date]); setRaise(null) }} />}
     </>
   )
 }

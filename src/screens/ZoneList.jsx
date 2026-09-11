@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import PeoplePanel from '../components/PeoplePanel'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from '../components/AppShell'
-import { CX, Icon, Pill, Select } from '../components/ui'
-import { BUSINESS_UNITS, useZones } from '../data/seed'
+import { CX, Icon, Pill } from '../components/ui'
+import { useZones } from '../data/seed'
 
 /* S1 — Work Locations (list).
    Skeleton COPIED from the crawled Shift Settings list
@@ -12,10 +13,10 @@ import { BUSINESS_UNITS, useZones } from '../data/seed'
 const TYPE_LABEL = { office: 'Office', project_site: 'Project Site', client_site: 'Client Site' }
 
 export default function ZoneList() {
-  const [bu, setBu] = useState(BUSINESS_UNITS[0].id)
   const { zones: ZONES, archiveZone } = useZones()
+  const [panel, setPanel] = useState(null)
   const [q, setQ] = useState('')
-  const rows = ZONES.filter(z => !z.archived && z.business_unit_id === bu &&
+  const rows = ZONES.filter(z => !z.archived &&
     (z.name + z.code).toLowerCase().includes(q.toLowerCase()))
 
   return (
@@ -25,8 +26,6 @@ export default function ZoneList() {
         <div className={CX.panelHead}>
           <h1 className={CX.headTitle}>Work Locations</h1>
           <div className="flex items-center gap-x-3">
-            <Select value={bu} onChange={setBu} width="w-64"
-              options={BUSINESS_UNITS.map(b => ({ value: b.id, label: b.name }))} />
             <Link to="/work-locations/add" className={CX.btnPrimary}>
               <span className="flex items-center gap-2"><Icon name="plus" /> Add Location</span>
             </Link>
@@ -70,7 +69,8 @@ export default function ZoneList() {
                   <td className={`${CX.td} tabular-nums`}>{z.radius_m} m</td>
                   <td className={`${CX.td} tabular-nums`}>
                     {z.assigned > 0
-                      ? z.assigned
+                      ? <button type="button" onClick={() => setPanel(z)}
+                          className="text-indigo-600 hover:text-indigo-800 font-medium">{z.assigned}</button>
                       : <span className="text-warning-700 font-medium">nobody yet</span>}
                   </td>
                   <td className={CX.td}>
@@ -90,6 +90,7 @@ export default function ZoneList() {
           </table>
         </div>
       </div>
+      {panel && <PeoplePanel zone={panel} onClose={() => setPanel(null)} />}
     </>
   )
 }

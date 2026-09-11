@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { Icon, MultiSelect, FIELD_LABEL } from './ui'
-import { DEPARTMENTS, DESIGNATIONS, EMPLOYEES } from '../data/seed'
+import { Icon, Select, MultiSelect, FIELD_LABEL } from './ui'
+import { DEPARTMENTS, DESIGNATIONS, EMPLOYEES, BUSINESS_UNITS } from '../data/seed'
 
 /* Field pattern COPIED from CollabCRM's "Assign Shift to Employees"
    (crawled 10-Sep, evidence/dom/shift_assign_modal.html): cascading
@@ -11,7 +11,7 @@ import { DEPARTMENTS, DESIGNATIONS, EMPLOYEES } from '../data/seed'
    and the effective dates are dropped because a location is not date-bounded the way a
    shift assignment is — it applies until someone changes it. */
 
-export default function AssignPeople({ value, onChange }) {
+export default function AssignPeople({ value, onChange, businessUnitId, onBusinessUnit }) {
   const { department_ids = [], designation_ids = [], employee_ids = [] } = value
   const set = patch => onChange({ ...value, ...patch })
 
@@ -27,6 +27,13 @@ export default function AssignPeople({ value, onChange }) {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
+          <label className={FIELD_LABEL}>Business Unit <span className="text-error-500">*</span></label>
+          <div className="mt-1.5">
+            <Select value={businessUnitId} onChange={onBusinessUnit}
+                    options={BUSINESS_UNITS.map(b => ({ value: b.id, label: b.name }))} />
+          </div>
+        </div>
+        <div>
           <label className={FIELD_LABEL}>Department</label>
           <div className="mt-1.5">
             <MultiSelect values={department_ids} onChange={v => set({ department_ids: v, employee_ids: [] })}
@@ -40,18 +47,17 @@ export default function AssignPeople({ value, onChange }) {
               options={DESIGNATIONS.map(d => ({ value: d.id, label: d.name }))} placeholder="All designations" />
           </div>
         </div>
-      </div>
-
-      <div className="2xl:mt-4 mt-3">
-        <label className={FIELD_LABEL}>Employee (s)</label>
-        <div className="mt-1.5">
+        <div>
+          <label className={FIELD_LABEL}>Employee (s)</label>
+          <div className="mt-1.5">
           <MultiSelect values={employee_ids} onChange={v => set({ employee_ids: v })}
             options={pool.map(e => ({ value: e.id, label: `${e.name} (${e.code})` }))}
             placeholder={`Everyone matching above — ${pool.length} ${pool.length === 1 ? 'person' : 'people'}`} />
-        </div>
-        <p className="mt-1.5 2xl:text-xs text-xxs text-gray-500">
+          </div>
+          <p className="mt-1.5 2xl:text-xs text-xxs text-gray-500">
           Leave this empty to include everyone matching the filters above, or name individuals to narrow it further.
-        </p>
+          </p>
+        </div>
       </div>
 
       <div className="2xl:mt-5 mt-4 rounded-lg border border-gray-200 bg-gray-50 2xl:px-4 px-3 2xl:py-3 py-2.5
