@@ -30,13 +30,16 @@ const Chip = ({ icon, children }) => (
 export default function LookupFilter({ fields, onChange, placeholder = 'Filter Results...' }) {
   const [mode, setMode] = useState('lookup')        // lookup | quick
   const [modeOpen, setModeOpen] = useState(false)
+  const [open, setOpen] = useState(false)   // the field / operator menu, opened by clicking
   const [field, setField] = useState(null)
   const [op, setOp] = useState(null)
   const [value, setValue] = useState('')
   const box = useRef(null), input = useRef(null)
 
   useEffect(() => {
-    const away = e => { if (box.current && !box.current.contains(e.target)) setModeOpen(false) }
+    const away = e => {
+      if (box.current && !box.current.contains(e.target)) { setModeOpen(false); setOpen(false) }
+    }
     document.addEventListener('mousedown', away)
     return () => document.removeEventListener('mousedown', away)
   }, [])
@@ -47,7 +50,7 @@ export default function LookupFilter({ fields, onChange, placeholder = 'Filter R
       : { mode, field: field?.key, op, value })
   }, [mode, field, op, value])   // eslint-disable-line
 
-  const reset = () => { setField(null); setOp(null); setValue(''); input.current?.focus() }
+  const reset = () => { setField(null); setOp(null); setValue(''); setOpen(false) }
   const stage = mode === 'quick' ? 'value' : !field ? 'field' : !op ? 'op' : 'value'
   const operators = field?.operators || ['Contains', 'Is']
 
@@ -93,18 +96,18 @@ export default function LookupFilter({ fields, onChange, placeholder = 'Filter R
                 <input ref={input} type="text" value={value}
                   onChange={e => setValue(e.target.value)}
                   readOnly={stage !== 'value'}
-                  onFocus={() => setModeOpen(false)}
+                  onClick={() => { setModeOpen(false); if (stage !== 'value') setOpen(true) }}
                   placeholder={stage === 'field' ? placeholder : stage === 'op' ? '' : 'Search...'}
                   className="w-full 2xl:p-[7px] 2xl-to-xl:p-1 p-1 2xl:text-sm 2xl-to-xl:text-xs text-xs outline-none
                              placeholder:text-gray-400 bg-transparent" />
               </div>
 
-              {stage === 'field' && (
+              {open && stage === 'field' && (
                 <ul className={MENU} style={{ top: '100%' }}>
                   {fields
                     .filter(f => f.label.toLowerCase().includes(value.toLowerCase()))
                     .map(f => (
-                      <li key={f.key} onClick={() => { setField(f); setValue(''); input.current?.focus() }} className={ROW}>
+                      <li key={f.key} onClick={() => { setField(f); setValue(''); setOpen(true) }} className={ROW}>
                         <span><div className="flex items-center">
                           <span className={`icon-${f.icon} ${ICON}`} />
                           <span>{f.label}</span>
@@ -114,10 +117,10 @@ export default function LookupFilter({ fields, onChange, placeholder = 'Filter R
                 </ul>
               )}
 
-              {stage === 'op' && (
+              {open && stage === 'op' && (
                 <ul className={MENU} style={{ top: '100%' }}>
                   {operators.map(o => (
-                    <li key={o} onClick={() => { setOp(o); input.current?.focus() }} className={ROW}>
+                    <li key={o} onClick={() => { setOp(o); setOpen(false); input.current?.focus() }} className={ROW}>
                       <span>{o}</span>
                     </li>
                   ))}
@@ -131,7 +134,7 @@ export default function LookupFilter({ fields, onChange, placeholder = 'Filter R
       {/* clear everything */}
       <div className="w-8 shrink-0 -ms-10 z-10 flex justify-center">
         {(field || value) && (
-          <button type="button" onClick={() => { setField(null); setOp(null); setValue('') }}>
+          <button type="button" onClick={() => { setField(null); setOp(null); setValue(''); setOpen(false) }}>
             <Icon name="x-close" className="text-lg text-gray-400 hover:text-gray-700" />
           </button>
         )}

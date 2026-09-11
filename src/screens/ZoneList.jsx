@@ -38,7 +38,6 @@ export default function ZoneList() {
     { key: 'name',    label: 'Location name', icon: 'image-user-check',  operators: ['Contains', 'Is'] },
     { key: 'code',    label: 'Short code',    icon: 'code-circle-03',    operators: ['Contains', 'Is'] },
     { key: 'address', label: 'Address',       icon: 'marker-pin-01',     operators: ['Contains'] },
-    { key: 'type',    label: 'Kind of place', icon: 'building-06',       operators: ['Is'] },
     { key: 'status',  label: 'Status',        icon: 'check-verified-02', operators: ['Is'] },
   ]
 
@@ -49,7 +48,6 @@ export default function ZoneList() {
     if (mode === 'quick')
       return [z.name, z.code, z.resolved_address].join(' ').toLowerCase().includes(v)
     const got = { name: z.name, code: z.code, address: z.resolved_address,
-                  type: z.zone_type === 'office' ? 'Office' : 'Site',
                   status: z.is_active ? 'Active' : 'Inactive' }[field] || ''
     return op === 'Is' ? got.toLowerCase() === v : got.toLowerCase().includes(v)
   }
