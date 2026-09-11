@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import PeoplePanel from '../components/PeoplePanel'
+import LookupFilter from '../components/LookupFilter'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from '../components/AppShell'
-import { CX, Icon, Pill } from '../components/ui'
+import { CX, Icon, Pill, CountPill } from '../components/ui'
 import { useZones } from '../data/seed'
 
 /* S1 — Work Locations (list).
@@ -28,16 +29,42 @@ const AuditCell = ({ name, when }) => (
 export default function ZoneList() {
   const { zones: ZONES, archiveZone } = useZones()
   const [panel, setPanel] = useState(null)
-  const [q, setQ] = useState('')
-  const rows = ZONES.filter(z => !z.archived &&
-    (z.name + z.code).toLowerCase().includes(q.toLowerCase()))
+  const [filter, setFilter] = useState({ mode: 'lookup' })
+
+  /* This screen's own columns. Icons follow the app's convention: a title field uses
+     icon-image-user-check, a code uses icon-code-circle-03, a status uses
+     icon-check-verified-02 (evidence/dom/designation_filter.html). */
+  const FIELDS = [
+    { key: 'name',    label: 'Location name', icon: 'image-user-check',  operators: ['Contains', 'Is'] },
+    { key: 'code',    label: 'Short code',    icon: 'code-circle-03',    operators: ['Contains', 'Is'] },
+    { key: 'address', label: 'Address',       icon: 'marker-pin-01',     operators: ['Contains'] },
+    { key: 'type',    label: 'Kind of place', icon: 'building-06',       operators: ['Is'] },
+    { key: 'status',  label: 'Status',        icon: 'check-verified-02', operators: ['Is'] },
+  ]
+
+  const matches = z => {
+    const { mode, field, op, value } = filter
+    if (!value) return true
+    const v = value.toLowerCase()
+    if (mode === 'quick')
+      return [z.name, z.code, z.resolved_address].join(' ').toLowerCase().includes(v)
+    const got = { name: z.name, code: z.code, address: z.resolved_address,
+                  type: z.zone_type === 'office' ? 'Office' : 'Site',
+                  status: z.is_active ? 'Active' : 'Inactive' }[field] || ''
+    return op === 'Is' ? got.toLowerCase() === v : got.toLowerCase().includes(v)
+  }
+  const rows = ZONES.filter(z => !z.archived && matches(z))
 
   return (
     <>
       <Breadcrumb trail={[{ label: 'Config' }, { label: 'Work Locations' }]} />
       <div className={CX.pageWrap}>
         <div className={CX.panelHead}>
-          <h1 className={CX.headTitle}>Work Locations</h1>
+          <div className="flex items-center gap-x-3">
+            <p className="font-semibold text-gray-900 2xl:text-lg 2xl-to-xl:text-base text-base">Work Locations</p>
+            <CountPill from={rows.length ? 1 : 0} to={rows.length}
+                       total={ZONES.filter(z => !z.archived).length} label="Work Locations" />
+          </div>
           <div className="flex items-center gap-x-3">
             <Link to="/work-locations/add" className={CX.btnPrimary}>
               <span className="flex items-center gap-2"><Icon name="plus" /> Add Location</span>
@@ -46,13 +73,7 @@ export default function ZoneList() {
         </div>
 
         <div className="border-x border-gray-200 bg-gray-50 2xl:p-4 2xl-to-xl:p-2 p-2 flex items-center gap-x-3">
-          <div className="relative w-80">
-            <Icon name="search-lg" className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-base" />
-            <input value={q} onChange={e => setQ(e.target.value)}
-              placeholder="Search locations"
-              className={`${CX.input} pl-9`} />
-          </div>
-          <span className="2xl:text-xs text-xxs text-gray-500">{rows.length} of {ZONES.length} locations</span>
+          <LookupFilter fields={FIELDS} onChange={setFilter} />
         </div>
 
         <div className={CX.tableBox}>

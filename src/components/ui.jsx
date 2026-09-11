@@ -496,3 +496,19 @@ export function InfoNote({ title, children }) {
     </div>
   )
 }
+
+
+/* The count beside a list title. COPIED from the Designations panel head
+   (evidence/dom/designation_real.html): bold range, then a medium " of N Label". */
+export function CountPill({ from, to, total, label }) {
+  return (
+    <div className="rounded-2xl border flex w-max font-medium items-center border-indigo-200 bg-indigo-50
+                    text-indigo-700 2xl:!text-xs 2xl-to-xl:!text-xxs !text-xxs 2xl:!py-0.5 2xl-to-xl:!py-0
+                    !py-0 py-0.5 px-2 text-xs">
+      <span>
+        <span className="font-bold">{from}&nbsp;-&nbsp;{to}</span>
+        <span className="font-medium"> of {total} {label}</span>
+      </span>
+    </div>
+  )
+}
