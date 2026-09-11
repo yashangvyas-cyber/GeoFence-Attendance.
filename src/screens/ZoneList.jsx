@@ -12,6 +12,19 @@ import { useZones } from '../data/seed'
 
 const TYPE_LABEL = { office: 'Office', project_site: 'Project Site', client_site: 'Client Site' }
 
+/* Two-line audit cell, COPIED from the Department listing
+   (evidence/dom/department_list.html): a fixed 185px block, name on one line,
+   timestamp beneath, a dash when empty. */
+const AuditCell = ({ name, when }) => (
+  <div className="inline-block w-[185px] break-all text-wrap 2xl:!text-sm 2xl-to-xl:!text-xs !text-xs
+                  text-gray-600 font-normal">
+    <div className="capitalize 2xl:text-sm 2xl-to-xl:text-xs text-xs">
+      <p className="truncate max-w-full 2xl:text-sm 2xl-to-xl:text-xs text-xs">{name || '-'}</p>
+      <p className="2xl:text-sm 2xl-to-xl:text-xs text-xs block text-gray-500">{when || ''}</p>
+    </div>
+  </div>
+)
+
 export default function ZoneList() {
   const { zones: ZONES, archiveZone } = useZones()
   const [panel, setPanel] = useState(null)
@@ -46,7 +59,7 @@ export default function ZoneList() {
           <table className={CX.table}>
             <thead>
               <tr>
-                {['No.', 'Location', 'Code', 'Where', 'Radius', 'People', 'Status', 'Actions']
+                {['No.', 'Location', 'Code', 'Address', 'Radius', 'People', 'Status', 'Last Modified by', 'Created by', 'Actions']
                   .map(h => <th key={h} className={CX.th}>{h}</th>)}
               </tr>
             </thead>
@@ -78,6 +91,8 @@ export default function ZoneList() {
                       {z.is_active ? 'Active' : 'Inactive'}
                     </Pill>
                   </td>
+                  <td className={CX.td}><AuditCell name={z.modified_by} when={z.modified_at} /></td>
+                  <td className={CX.td}><AuditCell name={z.created_by} when={z.created_at} /></td>
                   <td className={CX.td}>
                     <div className="flex items-center gap-x-3 text-gray-500">
                       <Link to={`/work-locations/${z.id}/edit`} title="Edit"><Icon name="edit-01" className="text-base hover:text-indigo-600" /></Link>

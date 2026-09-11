@@ -11,7 +11,7 @@ export const BUSINESS_UNITS = [
 ]
 
 export const ZONES = [
-  { id: 'z1', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Shaligram Corporate', code: 'SHLG', zone_type: 'office',
+  { id: 'z1', created_by: 'Gurpreetsingh Dhillon', created_at: '26-May-2026, 12:59 PM', modified_by: 'Super User', modified_at: '02-Sep-2026, 04:12 PM', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Shaligram Corporate', code: 'SHLG', zone_type: 'office',
     lat: 23.0276, long: 72.5871, radius_m: 120, assigned: 64, is_active: true, version: 1,
     biometric_covered: true,
     resolved_address: 'Relief Road, Manek Chowk, Khadia, Ahmedabad, Gujarat, 380001, India',
@@ -21,7 +21,7 @@ export const ZONES = [
     web_punch_allowed: true, web_max_accuracy_m: 1000, allowed_ip_cidrs: [], verify_ip_match: true,
     require_comment_first_in: false, require_approval_first_in: false, require_selfie: false,
     selfie_scope: 'first_clock_in' },
-  { id: 'z2', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Science Park', code: 'SCPK', zone_type: 'office',
+  { id: 'z2', created_by: 'Gurpreetsingh Dhillon', created_at: '26-May-2026, 01:04 PM', modified_by: '', modified_at: '', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Science Park', code: 'SCPK', zone_type: 'office',
     lat: 23.0710144, long: 72.5182677, radius_m: 150, assigned: 41, is_active: true, version: 1,
     biometric_covered: true,
     resolved_address: 'Science City Road, Sola, Ahmedabad, Gujarat, 380060, India',
@@ -31,7 +31,7 @@ export const ZONES = [
     web_punch_allowed: true, web_max_accuracy_m: 1000, allowed_ip_cidrs: [], verify_ip_match: true,
     require_comment_first_in: false, require_approval_first_in: false, require_selfie: false,
     selfie_scope: 'first_clock_in' },
-  { id: 'z3', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Site C - Bopal Ph2', code: 'STC2', zone_type: 'project_site',
+  { id: 'z3', created_by: 'Super User', created_at: '08-Sep-2026, 05:33 PM', modified_by: 'Aarti Tiwari', modified_at: '10-Sep-2026, 11:20 AM', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Site C - Bopal Ph2', code: 'STC2', zone_type: 'project_site',
     lat: 23.0361, long: 72.4698, radius_m: 400, assigned: 18, is_active: true, version: 1,
     biometric_covered: false,
     resolved_address: 'Bopal, Ahmedabad, Gujarat, 380058, India',
@@ -41,7 +41,7 @@ export const ZONES = [
     web_punch_allowed: true, web_max_accuracy_m: 1000, allowed_ip_cidrs: ['103.21.58.0/24'], verify_ip_match: true,
     require_comment_first_in: true, require_approval_first_in: true, require_selfie: false,
     selfie_scope: 'first_clock_in' },
-  { id: 'z4', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Site D - Sanand Plot', code: 'STD4', zone_type: 'project_site',
+  { id: 'z4', created_by: 'Super User', created_at: '09-Sep-2026, 10:41 AM', modified_by: '', modified_at: '', business_unit_id: 'd7556737-a732-4971-9968-e35dfd1e9e9e', name: 'Site D - Sanand Plot', code: 'STD4', zone_type: 'project_site',
     lat: 22.9894, long: 72.3821, radius_m: 600, assigned: 12, is_active: false, version: 1,
     biometric_covered: false,
     resolved_address: 'Sanand, Ahmedabad, Gujarat, 382110, India',
