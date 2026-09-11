@@ -45,7 +45,8 @@ export default function OperationalConfig() {
           <div className="mt-3 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 flex items-center gap-2">
             <Icon name="info-circle" className="text-base text-gray-400" />
             <p className="2xl:text-xs text-xxs text-gray-600">
-              Dimmed rows already exist in CollabCRM and are shown unchanged. Only Mobile Check-In Button is new.
+              Dimmed rows exist today and are unchanged. Web Check-In Button gains a second point in
+              its note, and Mobile Check-In Button is new — both are shown at full strength.
             </p>
           </div>
 
@@ -86,9 +87,8 @@ export default function OperationalConfig() {
             </ConfigRow>
           </Existing>
 
-          {/* Web Check-In Button — existing, shown in full because the new row sits under it */}
-          <Existing>
-            <ConfigRow id="web_check_in" title="Web Check-In Button">
+          {/* Not dimmed: the row exists today, but point 2 of its note is new */}
+          <ConfigRow id="web_check_in" title="Web Check-In Button">
               <ConfigToggle id="toggleAll" label="Show by default in employee view"
                             checked={webCheckIn} onChange={setWebCheckIn} />
               <InfoNote>
@@ -122,8 +122,7 @@ export default function OperationalConfig() {
                   </li>
                 </ol>
               </InfoNote>
-            </ConfigRow>
-          </Existing>
+          </ConfigRow>
 
           <ConfigRow id="mobile_check_in" title="Mobile Check-In Button">
             <ConfigToggle id="toggleMobile" label="Show by default in employee view"
