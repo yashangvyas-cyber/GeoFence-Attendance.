@@ -1,0 +1,29 @@
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  WEB / LAPTOP PUNCH RULES            (same form as S2, one more card)                                    │
+│                                                                                                          │
+│  [x] Allow marking attendance at this zone from a laptop / desktop browser                               │
+│                                                                                                          │
+│  Accuracy tolerance for web punches   [ 1000 ] m                                                         │
+│    A laptop has no GPS. WiFi lookup gives 30-500 m; with no mapped WiFi the                              │
+│    browser falls back to IP and gives 1-5 km. Mobile fixes use radius / 2.                               │
+│                                                                                                          │
+│  Site network (optional)                                                                                 │
+│  [ 103.21.58.0/24  x ]  [ + Add IP range ]                                                               │
+│    A punch from the site's own connection is accepted whatever the WiFi fix says.                        │
+│    On a construction site this is usually the strongest signal available.                                │
+│                                                                                                          │
+│  [x] Cross-check the coordinate against the request IP  ->  flag on mismatch                             │
+│      Chrome DevTools can fake the coordinate in 3 clicks. It cannot fake the IP.                         │
+│                                                                                                          │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  Verdict a web punch can receive at this zone:                                                           │
+│                                                                                                          │
+│    in_zone         fits inside radius + accuracy        -> counts                                        │
+│    ip_allowlisted  came from the site network           -> counts                                        │
+│    unverified      fix too coarse to decide             -> AR queue                                      │
+│    out_of_zone     accurate fix, clearly outside        -> AR queue                                      │
+│    ip_mismatch     coordinate and IP disagree           -> AR queue + integrity                          │
+│                                                                                                          │
+│  "We could not tell" and "you were not there" are DIFFERENT answers.                                     │
+│  Never collapse unverified into absent.                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────┘

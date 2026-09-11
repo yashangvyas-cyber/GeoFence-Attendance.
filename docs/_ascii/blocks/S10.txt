@@ -1,0 +1,62 @@
+                     shift window opens
+                            |
+                            v
+    +--------------------------------------------------+
+    |                    IDLE                          |<---------------+
+    |   zones registered on device (nearest 20 / 100)  |                |
+    +--------------------------------------------------+                |
+                            |                                           |
+             OS reports ENTER (zone Z)                                  |
+                            v                                           |
+    +--------------------------------------------------+                |
+    |                 PENDING_ENTER                    |                |
+    |  start dwell timer (default 5 min)               |                |
+    |  reject if: accuracy > radius/2                  |--- rejected -->+
+    |             speed > 15 km/h  (drive-past)        |                |
+    |             isMock / simulated                   |                |
+    |             employee not assigned to Z           |                |
+    |             on leave / holiday / week-off        |                |
+    +--------------------------------------------------+                |
+                            |                                           |
+                  dwell satisfied                                       |
+                            v                                           |
+    +--------------------------------------------------+                |
+    |                    ON_SITE                       |                |
+    |  geofence_event(ENTER) POSTed                    |                |
+    |  heartbeat every 15 min                          |                |
+    |  clamped to shift check_in_allowed_from          |                |
+    +--------------------------------------------------+                |
+          |                  |                    |                     |
+   OS EXIT + absence   3 heartbeats missed   shift cut-off              |
+   >= 10 min, outside   (battery/killed/     reached                    |
+   radius + 50 m        no network)              |                      |
+          |                  |                    |                     |
+          v                  v                    v                     |
+    +----------+   +------------------+   +------------------+          |
+    | CLOSED   |   | CLOSED_UNKNOWN   |   | CLOSED_CUTOFF    |          |
+    | clean    |   | -> EXCEPTION     |   | -> EXCEPTION     |          |
+    +----------+   +------------------+   +------------------+          |
+          |                  |                    |                     |
+          +------------------+--------------------+                     |
+                            |                                           |
+                            v                                           |
+    +--------------------------------------------------+                |
+    |              SERVER RE-VERIFICATION              |                |
+    |  * Haversine: was the coordinate really inside?  |                |
+    |  * impossible-travel check vs previous event     |                |
+    |  * device clock skew < 5 min                     |                |
+    |  * biometric zone? -> corroborate only           |                |
+    +--------------------------------------------------+                |
+                            |                                           |
+              +-------------+--------------+                            |
+              v                            v                            |
+    +------------------+        +--------------------------+            |
+    |  ATTENDANCE      |        |   EXCEPTION QUEUE (S7)   |            |
+    |  EVENT CREATED   |        |   human decides          |            |
+    |  (mode-dependent)|        |   -> AR request path     |            |
+    +------------------+        +--------------------------+            |
+              |                            |                            |
+              +-------------+--------------+----------------------------+
+                            v
+                    shift window closes
+                   monitoring SUSPENDED

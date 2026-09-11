@@ -1,0 +1,26 @@
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ CollabCRM  People   [STAGING]                  [Search]  [ New v ]  [todo] [bell] (GD)                   │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ (home) > Configuration > Geofence Zones > Site C - Bopal Ph2 > Assignment                                │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                          │
+│  Site C - Bopal Ph2   * Active                             [ Cancel ]   [ Save ]                         │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  [ Zone Details ]  [ ASSIGNMENT ]  [ Activity ]                                                          │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                          │
+│  Assign this zone to                                                                                     │
+│  ( ) Whole business unit    (o) Selected departments    ( ) Selected employees                           │
+│                                                                                                          │
+│  Departments *                                                                                           │
+│  [ Site Engineering  x ] [ Project Management  x ] [ + Add ]                                             │
+│                                                                                                          │
+│  Additional employees                                                                                    │
+│  [ Aarti Tiwari (BL-014)  x ] [ Gautam Menon (BL-009)  x ]  [ + Add ]                                    │
+│                                                                                                          │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  18 employees will be monitored at this zone.                                                            │
+│  ! 3 of them are already assigned to 19 other zones. iOS monitors a maximum of                           │
+│    20 regions per app - only the nearest 20 are registered on device.                                    │
+│                                                                                                          │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────┘

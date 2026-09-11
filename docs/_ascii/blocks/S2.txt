@@ -1,0 +1,43 @@
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ CollabCRM  People   [STAGING]                  [Search]  [ New v ]  [todo] [bell] (GD)                   │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ (home) > Configuration > Geofence Zones > Add Zone                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                          │
+│  Add New Geofence Zone                                     [ Cancel ]   [ Submit ]                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  ZONE DETAILS                                      │  LOCATION                                           │
+│                                                    │                                                     │
+│  Zone Name *                                       │   +----------------------------------------------+  │
+│  [ Site C - Bopal Phase 2..................... ]   │   |            (OpenStreetMap tiles)             |  │
+│                                                    │   |                                              |  │
+│  Zone Code *                                       │   |                 . - - - - .                  |  │
+│  [ STC2 ]                                          │   |              /    radius     \               |  │
+│                                                    │   |             |       (+)       |  <- drag     |  │
+│  Business Unit *                                   │   |              \   400 m      /   to move     |   │
+│  [ BlueWhale Technosoft Pvt. Ltd.           v ]    │   |                 ' - - - - '                  |  │
+│                                                    │   |                                              |  │
+│  Zone Type *                                       │   |                                     [ + ][ - ]| │
+│  ( ) Office   (o) Project Site   ( ) Client Site   │   +----------------------------------------------+  │
+│                                                    │                                                     │
+│  Centre Latitude *      Centre Longitude *         │   [ Drop pin ]  [ Use my location ]  [ Paste co-ords│
+│  [ 23.03610      ]      [ 72.46980       ]         │                                                     │
+│                                                    │   Resolved address (geocoded once, at save):        │
+│  Radius (metres) *                                 │   Bopal, Ahmedabad, Gujarat, 380058, India          │
+│  [ 400 ]  |----o--------------------|  50m .. 2000m│                                                     │
+│  ! Below 100 m the OS cannot fence reliably.       │                                                     │
+│                                                    │                                                     │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  DETECTION RULES                                                                                         │
+│                                                                                                          │
+│  Minimum dwell before ENTER counts *      [  5 ] minutes                                                 │
+│  Minimum absence before EXIT counts *     [ 10 ] minutes                                                 │
+│  Exit buffer (hysteresis) *               [ 50 ] metres beyond radius                                    │
+│  Reject fixes with accuracy worse than    [ 200 ] metres   (auto = radius / 2)                           │
+│  Ignore ENTER above speed                 [ 15 ] km/h      (drive-past guard)                            │
+│                                                                                                          │
+│  [x] Only monitor during the shift window (check-in allowed from .. cut-off)                             │
+│  [x] Do not auto-mark on leave / holiday / week-off - raise an exception instead                         │
+│  [ ] This zone is covered by biometric hardware - corroborate only, do not create                        │
+│      attendance events                                                                                   │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────┘

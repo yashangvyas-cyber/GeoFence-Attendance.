@@ -1,0 +1,27 @@
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ CollabCRM  People   [STAGING]                  [Search]  [ New v ]  [todo] [bell] (GD)                   │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ (home) > Attendance > Geofence Exceptions                                                                │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                          │
+│  Geofence Exceptions                     [ 12 open ]        [ Bulk approve ]                             │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  [ OPEN ]  [ Resolved ]  [ All ]        [ Zone v ] [ Reason v ] [ Date range ]                           │
+├────┬───────────────────┬───────────────┬──────────────────────────────┬───────────────────┬──────────────┤
+│ No │ Employee          │ Date / Zone   │ Why it was flagged           │ Proposed          │ Action       │
+├────┼───────────────────┼───────────────┼──────────────────────────────┼───────────────────┼──────────────┤
+│  1 │ Aarti Tiwari      │08 Sep / STC2  │ EXIT never received - phone  │ Close at 18:30    │ Accept  Edit │
+│    │ (BL-014)          │               │ battery died. Session open.  │ (shift cut-off)   │              │
+│  2 │ Gautam Menon      │08 Sep / SHLG  │ Impossible travel: 14 km in  │ Discard both      │ Accept  Edit │
+│    │ (BL-009)          │SCPK           │ 5 min (168 km/h)             │ events            │              │
+│  3 │ Kavya Madhavan    │07 Sep / STD4  │ Mocked location detected     │ Reject, notify    │ Accept  Edit │
+│    │ (BL-021)          │               │ (Android isMock = true)      │ reporting mgr     │              │
+│  4 │ Rahul Shah        │06 Sep / STC2  │ Present on a week-off day    │ Do not mark;      │ Accept  Edit │
+│    │ (BL-033)          │               │ (Sunday, 4h 12m on site)     │ raise OT request  │              │
+│  5 │ Nisha Patel       │05 Sep / SCPK  │ All fixes accuracy > 200 m   │ No auto-mark;     │ Accept  Edit │
+│    │ (BL-007)          │               │ (indoor / basement)          │ ask for AR        │              │
+│  6 │ Imran Qureshi     │05 Sep / STC2  │ Background permission was    │ No data;          │ Accept  Edit │
+│    │ (BL-018)          │               │ revoked on the device        │ notify employee   │              │
+├────┴───────────────────┴───────────────┴──────────────────────────────┴───────────────────┴──────────────┤
+│  Nothing here is applied to payroll until a human accepts it.                                            │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────┘

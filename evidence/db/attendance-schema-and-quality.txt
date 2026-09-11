@@ -1,0 +1,54 @@
+# Staging DB findings — collabcrm-staging-maildropcc, 2026-09-10
+
+## attendance_event columns
+     column_name      |        data_type         
+----------------------+--------------------------
+ id                   | uuid
+ employee_id          | uuid
+ biometric_id         | character varying
+ first_check_in       | timestamp with time zone
+ last_check_out       | timestamp with time zone
+ last_event_date_time | timestamp with time zone
+ last_event_device_id | character varying
+ attendance_details   | jsonb
+ present_date         | date
+ created_at           | timestamp with time zone
+ updated_at           | timestamp with time zone
+ deleted_at           | timestamp with time zone
+ effective_time       | smallint
+ break_time           | smallint
+ gross_time           | smallint
+ shift_details        | jsonb
+(16 rows)
+
+## keys present on every punch inside attendance_details->'attendance'
+      k      
+-------------
+ device_id
+ device_name
+ event_time
+ event_type
+ lat
+ long
+(6 rows)
+
+## device types and the JSON type of lat
+ lat_json_type | device | events | employees 
+---------------+--------+--------+-----------
+ number        | WCIO   |    112 |         8
+ string        | MANUAL |     68 |         2
+(2 rows)
+
+## per-employee web-punch coordinate quality
+ employee | web_punches | coarse_fix | precise 
+----------+-------------+------------+---------
+ 8f389b0e |         100 |         12 |      86
+ 411afe7c |           4 |          4 |       0
+ 83450fc5 |           2 |          2 |       0
+ 604fa4b7 |           2 |          2 |       0
+ 9cb69f09 |           1 |          1 |       0
+ bb3dbee9 |           1 |          1 |       0
+ 3d84f786 |           1 |          1 |       0
+ d1d6d48d |           1 |          1 |       0
+(8 rows)
+

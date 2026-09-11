@@ -1,0 +1,54 @@
+  +--------------------------------------------+    +--------------------------------------------+
+  |       Location notice  (DPDP s.7(i))       |    |                   Today                    |
+  +--------------------------------------------+    +--------------------------------------------+
+  |                                            |    |                                            |
+  | CollabCRM needs your location              |    | Wed, 09 Sep 2026        General Shift      |
+  | in the background                          |    |                                            |
+  |                                            |    |  +--------------------------------------+  |
+  |  Why:                                      |    |  |  ON SITE   Site C - Bopal Ph2        |  |
+  |  To record when you arrive at and          |    |  |  since 09:24 AM        02h 41m       |  |
+  |  leave a work site, so your                |    |  |  Verified by geofence                |  |
+  |  attendance is credited without            |    |  +--------------------------------------+  |
+  |  you having to punch in.                   |    |                                            |
+  |                                            |    |  Today                                     |
+  |  What we record:                           |    |   09:24  Entered Site C - Bopal Ph2        |
+  |  * The time you enter/leave a site         |    |   --:--  (still on site)                   |
+  |  * One coordinate per entry/exit           |    |                                            |
+  |                                            |    |  Effective 02h 41m   Gross 02h 41m         |
+  |  What we do NOT record:                    |    |                                            |
+  |  * Where you are outside your shift        |    |  [  Clock In / Out manually  ]             |
+  |  * Any continuous movement trail           |    |                                            |
+  |                                            |    |  ! Battery optimisation is ON for this     |
+  |  Location history is kept 90 days.         |    |    app. Entries may be missed.             |
+  |                                            |    |    [ Fix this ]                            |
+  |  [        I understand, allow      ]       |    |                                            |
+  |  [            Not now              ]       |    +--------------------------------------------+
+  |                                            |
+  +--------------------------------------------+
+
+  +--------------------------------------------+
+  |          Transition notifications          |
+  +--------------------------------------------+
+  |                                            |
+  |  (bell)  CollabCRM                         |
+  |                                            |
+  |  You have arrived at                       |
+  |  Site C - Bopal Ph2                        |
+  |                                            |
+  |  09:24 AM - attendance started             |
+  |                                            |
+  |  [ Not me / wrong site ]                   |
+  |                                            |
+  |                                            |
+  |  ------------------------------------      |
+  |                                            |
+  |  (bell)  CollabCRM                         |
+  |                                            |
+  |  You left Site C - Bopal Ph2               |
+  |                                            |
+  |  05:53 PM - 8h 29m on site                 |
+  |  Attendance submitted for approval         |
+  |                                            |
+  |  [ View ]                                  |
+  |                                            |
+  +--------------------------------------------+

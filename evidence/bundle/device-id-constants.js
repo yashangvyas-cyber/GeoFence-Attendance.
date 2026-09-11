@@ -1,0 +1,5 @@
+/* SOURCE: staging-app.collabcrm.com JS chunk index-9756f2a7.js, offset ~6019569
+   device_id / device_name constants for the two software attendance sources.
+   Verbatim minified slice. Not edited. */
+
+_id;return h[v]||(h[v]=[]),h[v].push(x),h},{});let d=(m=Object.keys(u||{}))==null?void 0:m.map(h=>{var x,v;return{title:h,name:(v=(x=u[h])==null?void 0:x[0])==null?void 0:v.device_name,inOut:Xat(u[h])}});return(d==null?void 0:d.length)>1&&(d=[{name:"All",title:"All",inOut:Xat(c)},...d]),d},K8t=e=>({device_id:e?"WFH":"WCIO",device_name:e?"Work from home":"Web Clock IN/OUT"}),JB=e=>{let t=e;return!e.startsWith("http://")&&!e.startsWith("https://")&&(t=`https://${e}`),t},Q8t=e=>e?e.replace(/DD/g,"dd").replace(/YYYY/g,"yyyy"):"dd/MM/yyyy",vc=(e,t,n)=>{t.set("page",e),n(t,{replace:!0})},di=(e,t,n,r)=>{n.set("perPage",e==n

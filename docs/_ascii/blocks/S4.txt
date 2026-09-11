@@ -1,0 +1,44 @@
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ CollabCRM  People   [STAGING]                  [Search]  [ New v ]  [todo] [bell] (GD)                   │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ (home) > Configuration > Operational Config > BlueWhale Technosoft Pvt. Ltd.                             │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                          │
+│  Operational Config   BlueWhale Technosoft Pvt. Ltd.        [ Cancel ]   [ Save ]                        │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  ATTENDANCE SETTINGS                                                                                     │
+│                                                                                                          │
+│  Date time           │  +---------------------------------------------------------------------+          │
+│  preference          │  | Timezone [ (GMT+05:30) Asia/Kolkata v ]  Date [ DD-MMM-YYYY v ]     |          │
+│                      │  +---------------------------------------------------------------------+          │
+│                      │                                                                                   │
+│  Week-Off Days       │  +---------------------------------------------------------------------+          │
+│                      │  | [ ]Mon [ ]Tue [ ]Wed [ ]Thu [ ]Fri [x]Sat [x]Sun                    |          │
+│                      │  +---------------------------------------------------------------------+          │
+│                      │                                                                                   │
+│  Web Check-In        │  +---------------------------------------------------------------------+          │
+│  Button              │  | Show by default in employee view  (i)                    ( ON  o)   |          │
+│                      │  +---------------------------------------------------------------------+          │
+│                      │                                                                                   │
+│  ................................. NEW IN THIS FEATURE ..................................                │
+│                                                                                                          │
+│  Geofenced           │  +---------------------------------------------------------------------+          │
+│  Attendance          │  | Enable geofenced attendance for this business unit   (i)  ( ON  o)  |          │
+│                      │  |                                                                     |          │
+│  Mark attendance     │  |  Mode                                                               |          │
+│  from verified       │  |  ( ) Verify only  - compare punches to zones, never create events   |          │
+│  site presence.      │  |  (o) Propose      - create a DRAFT event, HR confirms               |          │
+│                      │  |  ( ) Auto-mark    - create the attendance event directly            |          │
+│                      │  |                                                                     |          │
+│                      │  |  Minimum on-site time to count as a half day  [ 04:00 ] hh:mm       |          │
+│                      │  |  Minimum on-site time to count as a full day  [ 08:00 ] hh:mm       |          │
+│                      │  |                                                                     |          │
+│                      │  |  [x] Only track during the shift window                             |          │
+│                      │  |  [x] Block attendance from mocked / spoofed locations               |          │
+│                      │  |  [ ] Block attendance from rooted / jailbroken devices              |          │
+│                      │  |  [x] Require the employee to accept the tracking notice             |          │
+│                      │  |                                                                     |          │
+│                      │  |  Keep location history for  [ 90 v ] days, then delete              |          │
+│                      │  |  Notify on exception  [ Gurpreetsingh Dhillon (BL-001)  x ] [ + ]   |          │
+│                      │  +---------------------------------------------------------------------+          │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────┘
